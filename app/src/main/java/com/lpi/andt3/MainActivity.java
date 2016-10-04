@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         mainTextView = (TextView) findViewById(R.id.main_textview);
-        mainTextView.setText("Set in java!");
 
         mainButton = (Button) findViewById(R.id.main_button);
         mainButton.setOnClickListener(this);

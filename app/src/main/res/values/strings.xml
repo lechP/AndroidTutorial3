@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AndroidTutorial3</string>
+    <string name="main_textview">Lech is learning Android!</string>
+    <string name="main_button">Update the TextView</string>
+    <string name="main_hint">Type a name</string>
+    <string name="menu_share">Share</string>
+</resources>

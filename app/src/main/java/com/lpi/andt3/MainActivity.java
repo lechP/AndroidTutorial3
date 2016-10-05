@@ -89,10 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        String currentEditText = mainEditText.getText().toString();
-        mainTextView.setText(currentEditText + " is learning Android development!");
-        names.add(currentEditText);
-        setShareIntent();
+        new LibraryQuery(this).queryBooks(mainEditText.getText().toString());
     }
 
     @Override

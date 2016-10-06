@@ -5,4 +5,5 @@
     <string name="main_hint">Title and/or Author</string>
     <string name="menu_share">Share</string>
     <string name="found_book_cover">Found book cover</string>
+    <string name="activity_details">Book Details</string>
 </resources>

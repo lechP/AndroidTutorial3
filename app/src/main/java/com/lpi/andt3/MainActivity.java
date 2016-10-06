@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -91,7 +92,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        JSONObject jsonObject = (JSONObject) jsonAdapter.getItem(position);
+        String coverID = jsonObject.optString("cover_i", "");
+        Intent detailIntent = new Intent(this, DetailActivity.class);
+        detailIntent.putExtra("coverID", coverID);
+        startActivity(detailIntent);
     }
 
     @Override

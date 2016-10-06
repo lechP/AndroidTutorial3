@@ -6,4 +6,6 @@
     <string name="menu_share">Share</string>
     <string name="found_book_cover">Found book cover</string>
     <string name="activity_details">Book Details</string>
+    <string name="large_book_cover">Large book cover</string>
+    <string name="book_description_placeholder">Here will appear book description</string>
 </resources>

@@ -8,6 +8,7 @@ import android.support.v7.widget.ShareActionProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity {
@@ -22,12 +23,15 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         ImageView imageView = (ImageView) findViewById(R.id.img_cover);
+        TextView textView = (TextView) findViewById(R.id.book_description);
 
         String coverID = this.getIntent().getExtras().getString("coverID");
         if (coverID.length() > 0) {
             imageURL = IMAGE_URL_BASE + coverID + "-L.jpg";
             Picasso.with(this).load(imageURL).placeholder(R.drawable.img_books_loading).into(imageView);
         }
+        String subjects = this.getIntent().getExtras().getString("subject");
+        textView.setText(subjects);
     }
 
     private void setShareIntent() {

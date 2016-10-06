@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -96,7 +98,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String coverID = jsonObject.optString("cover_i", "");
         Intent detailIntent = new Intent(this, DetailActivity.class);
         detailIntent.putExtra("coverID", coverID);
+        detailIntent.putExtra("subject", getSubjectsString(jsonObject));
         startActivity(detailIntent);
+    }
+
+    private String getSubjectsString(JSONObject jsonObject) {
+        JSONArray subjects = jsonObject.optJSONArray("subject");
+        String subjectsString = "";
+        for (int i = 0; i < subjects.length(); i++) {
+            try {
+                subjectsString += subjects.getString(i) + "\n";
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return subjectsString;
     }
 
     @Override

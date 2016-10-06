@@ -15,9 +15,11 @@ public class LibraryQuery {
     private static final String QUERY_URL = "http://openlibrary.org/search.json?q=";
 
     private Activity context;
+    private BookJSONAdapter localStorage;
 
-    LibraryQuery(Activity a) {
-        context = a;
+    LibraryQuery(Activity activity, BookJSONAdapter localStorage) {
+        this.context = activity;
+        this.localStorage = localStorage;
     }
 
     void queryBooks(String searchString) {
@@ -35,6 +37,7 @@ public class LibraryQuery {
             public void onSuccess(JSONObject jsonObject) {
                 Toast.makeText(context.getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
                 Log.d("omg android", jsonObject.toString());
+                localStorage.updateData(jsonObject.optJSONArray("docs"));
             }
             @Override
             public void onFailure(int statusCode, Throwable throwable, JSONObject error) {

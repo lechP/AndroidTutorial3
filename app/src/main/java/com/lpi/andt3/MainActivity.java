@@ -8,13 +8,10 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -27,9 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mainButton;
     private EditText mainEditText;
     private ListView mainListView;
-    private ArrayAdapter<String> arrayAdapter;
+    private BookJSONAdapter jsonAdapter;
     private ShareActionProvider shareActionProvider;
-    private ArrayList<String> names = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +38,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mainButton.setOnClickListener(this);
 
         mainEditText = (EditText) findViewById(R.id.main_edittext);
+
         mainListView = (ListView) findViewById(R.id.main_listview);
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, names);
-        mainListView.setAdapter(arrayAdapter);
+        jsonAdapter = new BookJSONAdapter(this, getLayoutInflater());
+        mainListView.setAdapter(jsonAdapter);
         mainListView.setOnItemClickListener(this);
 
         displayWelcome();
@@ -89,12 +86,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        new LibraryQuery(this).queryBooks(mainEditText.getText().toString());
+        new LibraryQuery(this, jsonAdapter).queryBooks(mainEditText.getText().toString());
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("omg android", position + ": " + names.get(position));
+
     }
 
     @Override
